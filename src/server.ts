@@ -1,11 +1,12 @@
 import express from 'express';
 import { Server } from 'http';
 import {
-  createExpressServer,
   RoutingControllersOptions,
   useContainer,
+  useExpressServer,
 } from 'routing-controllers';
 import { Container } from 'typedi';
+import expressHttpContext from 'express-http-context';
 import { logger } from './utils/logger';
 import { PORT } from './utils/config';
 
@@ -15,6 +16,10 @@ export class AppServer {
   private routeOptions: RoutingControllersOptions;
 
   constructor() {
+    this.app = express();
+    this.app.use(expressHttpContext.middleware);
+    useContainer(Container);
+
     this.routeOptions = {
       routePrefix: '/api/v1',
       // defaultErrorHandler: false,
@@ -27,10 +32,7 @@ export class AppServer {
       interceptors: [`${__dirname}/interceptors/**/*.{ts,js}`],
       middlewares: [`${__dirname}/middlewares/**/*.{ts,js}`],
     };
-    useContainer(Container);
-
-    // Create server
-    this.app = createExpressServer(this.routeOptions);
+    this.app = useExpressServer(this.app, this.routeOptions);
   }
 
   getApp() {

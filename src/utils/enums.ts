@@ -3,3 +3,7 @@ export enum Environment {
   Prod = 'production',
   Test = 'test',
 }
+
+export enum LanguageFile {
+  Country = 'country.json',
+}
