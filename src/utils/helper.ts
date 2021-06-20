@@ -13,7 +13,7 @@ export const getTranslation = (file: LanguageFile): any => {
   return translation;
 };
 
-export const replaceRecursive =(obj: any, replaceKey: string, translation: any): any => {
+export const replaceRecursive = (obj: any, replaceKey: string, translation: any): any => {
   const newObj = {};
 
   Object.keys(obj).forEach((k) => {
@@ -31,4 +31,4 @@ export const replaceRecursive =(obj: any, replaceKey: string, translation: any):
   });
 
   return newObj;
-}
+};
