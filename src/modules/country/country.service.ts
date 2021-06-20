@@ -1,9 +1,9 @@
 import { Service } from 'typedi';
 import expressHttpContext from 'express-http-context';
-import { Magento } from '../magento';
+import { Magento } from '../../magento';
 import { Country } from './interfaces/country';
-import { getTranslation } from '../utils/helper';
-import { LanguageFile } from '../utils/enums';
+import { getTranslation } from '../../utils/helper';
+import { LanguageFile } from '../../utils/enums';
 
 @Service()
 export class CountryService {

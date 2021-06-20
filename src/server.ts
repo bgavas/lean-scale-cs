@@ -28,7 +28,7 @@ export class AppServer {
         allowedHeaders: '*',
         exposedHeaders: '*',
       },
-      controllers: [`${__dirname}/country/**/*.{ts,js}`],
+      controllers: [`${__dirname}/modules/**/*.{ts,js}`],
       interceptors: [`${__dirname}/interceptors/**/*.{ts,js}`],
       middlewares: [`${__dirname}/middlewares/**/*.{ts,js}`],
     };
