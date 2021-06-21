@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import { ElasticSearch } from '../elastic-search';
 import { Magento } from '../magento';
-import { Product } from '../modules/products/interfaces/product.interface';
+import { Product } from '../modules/product/interfaces/product.interface';
 import { Indices } from '../utils/enums';
 
 const es = new ElasticSearch();

@@ -1,7 +1,7 @@
 import elasticsearch from 'elasticsearch';
 import _ from 'lodash';
 import { Service } from 'typedi';
-import { Product } from '../modules/products/interfaces/product.interface';
+import { Product } from '../modules/product/interfaces/product.interface';
 import { ES_URL } from '../utils/config';
 import { Indices } from '../utils/enums';
 import { productMapping } from './mappings';
