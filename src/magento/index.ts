@@ -11,7 +11,7 @@ export class Magento {
 
   constructor() {
     this.client = axios.create({
-      baseURL: 'https://m2.leanscale.com/rest/default/V1',
+      baseURL: MAGENTO.URL,
     });
 
     // Set authorization header for every request
