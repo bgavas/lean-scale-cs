@@ -1,6 +1,7 @@
 import elasticsearch from 'elasticsearch';
 import _ from 'lodash';
 import { Service } from 'typedi';
+import { Product } from '../modules/products/interfaces/product.interface';
 import { ES_URL } from '../utils/config';
 import { Indices } from '../utils/enums';
 import { productMapping } from './mappings';
@@ -35,6 +36,36 @@ export class ElasticSearch {
         },
       });
     }
+  }
+
+  async searchProducts(size: number, from: number, q?: string): Promise<Product[]> {
+    const body: any = {
+      size,
+      from,
+      query: {
+        match_all: {},
+      },
+    };
+    if (q) {
+      body.query = {
+        bool: {
+          should: [{
+            match: { name: q },
+          }, {
+            match: { description: q },
+          }],
+          minimum_should_match: 1,
+        },
+      };
+    } else {
+      body.query = { match_all: {} };
+    }
+
+    const result = await this.client.search({
+      body,
+      index: Indices.Product,
+    });
+    return result.hits.hits.map(h => h._source as Product);
   }
 
   async bulkAdd(index: Indices, data: any[]) {
