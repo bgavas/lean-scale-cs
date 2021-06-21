@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { Service } from 'typedi';
 import { MAGENTO } from '../utils/config';
+import { CategoryProduct } from './interfaces/category-product.interface';
 import { Category } from './interfaces/category.interface';
 import { Country } from './interfaces/country.interface';
 
@@ -29,8 +30,29 @@ export class Magento {
     return countries;
   }
 
-  async getCategories(): Promise<Category[]> {
-    const categories = await this.client.get('/categories') as any;
+  async getCategories(): Promise<Category> {
+    const categories = await this.client.get('/categories') as Category;
     return categories;
+  }
+
+  async getCategoryProducts(categoryId: number): Promise<CategoryProduct[]> {
+    const products = await this.client.get(
+      `/categories/${categoryId}/products`,
+    ) as CategoryProduct[];
+    return products;
+  }
+
+  async searchProducts(skus: string[], size?: number, page?: number): Promise<any[]> {
+    const query = '';
+    const response = await this.client.get(`/products${query}`, {
+      params: {
+        'searchCriteria[filter_groups][0][filters][0][field]': 'sku',
+        'searchCriteria[filter_groups][0][filters][0][condition_type]': 'in',
+        'searchCriteria[filter_groups][0][filters][0][value]': skus.toString(),
+        'searchCriteria[pageSize]': size,
+        'searchCriteria[currentPage]': page,
+      },
+    }) as any;
+    return response.items;
   }
 }

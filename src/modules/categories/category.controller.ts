@@ -11,7 +11,7 @@ export class CategoryController {
   ) {}
 
   @Get('/')
-  async getCategories(): Promise<Category[]> {
+  async getCategories(): Promise<Category> {
     const categories = await this.categoryService.getCategories();
     return categories;
   }

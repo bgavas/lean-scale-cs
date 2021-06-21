@@ -10,7 +10,7 @@ export class CategoryService {
     private magento: Magento,
   ) {}
 
-  async getCategories(): Promise<Category[]> {
+  async getCategories(): Promise<Category> {
     const categories = await this.magento.getCategories();
 
     // Read translation JSON file if language is not en

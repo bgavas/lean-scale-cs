@@ -8,3 +8,7 @@ export enum LanguageFile {
   Country = 'country.json',
   Category = 'category.json',
 }
+
+export enum Indices {
+  Product = 'product',
+}

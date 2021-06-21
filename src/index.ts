@@ -6,11 +6,20 @@ import cluster from 'cluster';
 import os from 'os';
 import { logger } from './utils/logger';
 import { DISABLE_CLUSTER } from './utils/config';
+import { ElasticSearch } from './elastic-search';
 
 const startServer = () => {
   const appServer = new AppServer();
   appServer.setupStatusRoute();
   appServer.startServer();
+
+  try {
+    const es = new ElasticSearch();
+    es.createIndex();
+    logger.info('Successfully connected to elastic search');
+  } catch (error) {
+    logger.info(`Failed while connecting to elastic search: ${error}`);
+  }
 };
 
 if (DISABLE_CLUSTER || !cluster.isMaster) {
