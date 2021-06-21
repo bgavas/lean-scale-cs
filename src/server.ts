@@ -22,14 +22,13 @@ export class AppServer {
 
     this.routeOptions = {
       routePrefix: '/api/v1',
-      // defaultErrorHandler: false,
+      defaultErrorHandler: false,
       cors: {
         origin: '*',
         allowedHeaders: '*',
         exposedHeaders: '*',
       },
       controllers: [`${__dirname}/modules/**/*.{ts,js}`],
-      interceptors: [`${__dirname}/interceptors/**/*.{ts,js}`],
       middlewares: [`${__dirname}/middlewares/**/*.{ts,js}`],
     };
     this.app = useExpressServer(this.app, this.routeOptions);

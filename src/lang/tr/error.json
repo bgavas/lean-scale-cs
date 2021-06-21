@@ -1,0 +1,9 @@
+{
+  "Please provide a valid email": "Lütfen geçerli bir email girin",
+  "First name cannot be empty": "İsim boş olamaz",
+  "Last name cannot be empty": "Soy isim boş olamaz",
+  "Password cannot be empty": "Parola boş olamaz",
+  "Password must be at least 5 characters long": "Şifre en az 5 karakterden oluşmalıdır",
+  "A customer with the same email address already exists in an associated website.": "Böyle bir kullanıcı zaten mevcut",
+  "Password needs to have 1 char, 1 number and 1 symbol at least": "Parola en az 1 karakter, 1 sembol ve 1 sayıdan oluşmalıdır"
+}

@@ -7,6 +7,7 @@ export enum Environment {
 export enum LanguageFile {
   Country = 'country.json',
   Category = 'category.json',
+  Error = 'error.json',
 }
 
 export enum Indices {

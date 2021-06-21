@@ -17,6 +17,7 @@ export class LanguageMiddleware implements ExpressMiddlewareInterface {
 
     // Set global langauge
     expressHttpContext.set('lang', lang);
+    req.lang = lang;
     next();
   }
 }

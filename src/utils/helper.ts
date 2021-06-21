@@ -13,6 +13,17 @@ export const getTranslation = (file: LanguageFile): any => {
   return translation;
 };
 
+export const translate = (str: string, file: LanguageFile, lang: string): any => {
+  let translatedStr = str;
+  if (lang !== DEFAULT_LANGUAGE) {
+    const translation = jsonfile.readFileSync(`${__dirname}/../lang/${lang}/${file}`);
+    if (translation[str]) {
+      translatedStr = translation[str];
+    }
+  }
+  return translatedStr;
+};
+
 export const replaceRecursive = (obj: any, replaceKey: string, translation: any): any => {
   const newObj = {};
 
