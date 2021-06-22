@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+  lean-scale-cs:
+    container_name: lean-scale-cs
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/app/src
+    ports:
+      - '4000:4000'
+    depends_on: 
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=development
+      - PORT=4000
+      - DISABLE_CLUSTER=true
+      - ES_URL=http://elasticsearch:9200
+      - MAGENTO_URL=https://m2.leanscale.com/rest/default/V1
+      - MAGENTO_ACCESS_TOKEN=bib99ay5ulymg6jgu1ur095y6cf26tn4
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
+    container_name: elasticsearch
+    environment:
+      - node.name=elasticsearch
+      - cluster.name=datasearch
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - cluster.initial_master_nodes=elasticsearch
+    ports:
+      - 9500:9200
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./data/elastic:/usr/share/elasticsearch/data
+    healthcheck:
+      interval: 20s
+      retries: 100
+      test: curl -s http://localhost:9200/_cluster/health | grep -vq '"status":"red"'

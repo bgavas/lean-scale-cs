@@ -52,7 +52,7 @@ const run = async () => {
     logger.info('Customer import done');
   });
 
-  fs.createReadStream(`${__dirname}/../../customers.csv`).pipe(parser);
+  fs.createReadStream(`${__dirname}/../assets/customers.csv`).pipe(parser);
 };
 
 run();
