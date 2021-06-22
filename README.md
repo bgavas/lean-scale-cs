@@ -46,14 +46,14 @@
 > You can send the `Accept-Language` header to change the response language
 
 - Get countries
-  - http://localhost:4001/api/v1/countries
+  - http://localhost:4000/api/v1/countries
 - Get categories
-  - http://localhost:4001/api/v1/categories
+  - http://localhost:4000/api/v1/categories
 - Get products
-  - http://localhost:4001/api/v1/products?limit=20&offset=0&q=Bag
+  - http://localhost:4000/api/v1/products?limit=20&offset=0&q=Bag
   - You can provide custom parameters
 - Create customer
-  - http://localhost:4001/api/v1/customers
+  - http://localhost:4000/api/v1/customers
   - Sample payload
 
 ```javascript
